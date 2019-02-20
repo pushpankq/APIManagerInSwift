@@ -1,9 +1,9 @@
 //
 //  APIManager.swift
-//  Login-Demo-URLSession-&-AutoLayout
+//  APIManager Class
 //
-//  Created by drashti gangwar on 21/01/19.
-//  Copyright © 2019 drashti gangwar. All rights reserved.
+//  Created by Pushpank Kumar on 21/01/19.
+//  Copyright © 2019 Pushpank Kumar. All rights reserved.
 //
 
 import Foundation
@@ -11,6 +11,7 @@ import SwiftyJSON
 
 class APIManager {
     
+    //create singleton Class Object
     static let shared = APIManager()
     
     private init() {
@@ -60,11 +61,14 @@ class APIManager {
         
         // Url Validate 
         guard let serviceUrl = URL(string: Url) else { return }
-        
         var request = URLRequest(url: serviceUrl)
         
+        // Set http method type 
         request.httpMethod = "POST"
+        
+        // Set Header Type 
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        
         guard let httpBody = try? JSONSerialization.data(withJSONObject: dict, options: []) else {
             return
         }
